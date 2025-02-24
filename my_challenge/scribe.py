@@ -34,10 +34,24 @@ class TerminalScribe:
     self.canvas.setPos(self.pos, self.mark)
     self.canvas.print()
 
+  def drawSquare(self, size):
+    drawUpIndex = size * 2
+    for i in range(size):
+      self.draw((0, i))
+    for i in range(size):
+      self.draw((i, size))
+    for i in range(size, -1, -1):
+      self.draw((drawUpIndex, i))
+    for i in range(size, -1, -1):
+      self.draw((i, 0))
 
-canvas = Canvas(20, 20)
+canvas = Canvas(30, 30)
 scribe = TerminalScribe(canvas)
 
-for i in range(0, 10):
-  for j in range(0, 10):
-    scribe.draw((i, j))
+scribe.drawSquare(10)
+
+# for i in range(0, 10):
+#   for j in range(0, 10):
+#     scribe.draw((i, j))
+
+
