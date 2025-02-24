@@ -1,6 +1,6 @@
 import os
 import time
-from termcolor import colored
+from termcolor import colored # type: ignore
 
 # This is the Canvas class. It defines some height and width, and a 
 # matrix of characters to keep track of where the TerminalScribes are moving
@@ -35,7 +35,7 @@ class TerminalScribe:
         self.canvas = canvas
         self.trail = '.'
         self.mark = '*'
-        self.framerate = 0.2
+        self.framerate = 0.1
         self.pos = [0, 0]
 
     def up(self):
@@ -70,6 +70,16 @@ class TerminalScribe:
         # Sleep for a little bit to create the animation
         time.sleep(self.framerate)
 
+    def drawSquare(self, size):
+        for i in range(size):
+            self.right()
+        for i in range(size):
+            self.down()
+        for i in range(size):
+            self.left()
+        for i in range(size):
+            self.up()
+
 # Create a new Canvas instance that is 30 units wide by 30 units tall 
 canvas = Canvas(30, 30)
 
@@ -77,17 +87,19 @@ canvas = Canvas(30, 30)
 scribe = TerminalScribe(canvas)
 
 # Draw a small square
-scribe.right()
-scribe.right()
-scribe.right()
-scribe.down()
-scribe.down()
-scribe.down()
-scribe.left()
-scribe.left()
-scribe.left()
-scribe.up()
-scribe.up()
-scribe.up()
+scribe.drawSquare(15)
+
+# scribe.right()
+# scribe.right()
+# scribe.right()
+# scribe.down()
+# scribe.down()
+# scribe.down()
+# scribe.left()
+# scribe.left()
+# scribe.left()
+# scribe.up()
+# scribe.up()
+# scribe.up()
 
 
